@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <HelloWorld :options="fruitOptions" /> <HelloWorld :options="cars" />
+    <HelloWorld :dropDownName="fruit" :options="fruitOptions" />
+    <HelloWorld :dropDownName="cars" :options="$store.state.cars" />
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld";
+import store from "./store";
 
 export default {
   name: "App",
@@ -16,19 +18,27 @@ export default {
     return {
       selectedFruit: "Apple",
       fruitOptions: {
-        Apple: "Apple",
-        Banana: "Banana",
+        "New York": 1,
+        Coloardo: 2,
         Blueberry: "Blueberry",
         Kiwi: "Kiwi",
         Pear: "Pear",
         Pineapple: "Pineapple",
         Watermelon: "Watermelon"
       },
-      selectedCar: "Mustang",
-      cars: {
-        Mustang: "Mustang",
-        BMW: "BMW",
-        Honda: "Honda"
+      computed: {
+        testData() {
+          return this.$store.state.cars;
+        }
+      },
+      watch: {
+        testData: {
+          immediate: true,
+          deep: false,
+          handler(newValue, oldValue) {
+            console.log(newValue);
+          }
+        }
       }
     };
   }
