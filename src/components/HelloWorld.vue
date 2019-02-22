@@ -26,8 +26,12 @@ export default {
       selectedOption: null
     };
   },
-  beforeCreate() {
+  created() {
     //shared.getIT("State");
+    //this.$store.dispatch("fetchBook", 1);
+    console.log("here");
+    this.$store.dispatch("LOAD_INIT");
+    // this.CHANGE_CARS();
   },
   mounted() {
     this.selectedOption = this.value;
@@ -40,7 +44,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["CHANGE_CARS"]),
     getData: function(event) {
       alert("hi");
       this.CHANGE_CARS();

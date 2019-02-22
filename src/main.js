@@ -4,7 +4,7 @@ import Vue from "vue";
 import App from "./App";
 import store from "./store";
 import shared from "./components/shared";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
@@ -14,10 +14,11 @@ new Vue({
   store,
   components: { App },
   template: "<App/>",
-  beforeCreate() {
+  created() {
     console.log("in app create");
     // `1` is the ID of the book we want to fetch.
-    this.$store.dispatch("fetchBook", 1);
-    this.$store.dispatch("fetchBookList");
+    this.CHANGE_CARS();
+    //    this.$store.dispatch("fetchBook", 1);
+    //this.$store.dispatch("fetchBookList");
   }
 });
