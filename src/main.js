@@ -15,10 +15,6 @@ new Vue({
   components: { App },
   template: "<App/>",
   created() {
-    console.log("in app create");
-    // `1` is the ID of the book we want to fetch.
-    this.CHANGE_CARS();
-    //    this.$store.dispatch("fetchBook", 1);
-    //this.$store.dispatch("fetchBookList");
+    this.$store.dispatch("LOAD_INIT");
   }
 });

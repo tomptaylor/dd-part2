@@ -8,27 +8,30 @@ const store = new Vuex.Store({
   state: {
     selectedCar: "",
     cars: {
-      Mustang: "Mustang",
+      Mustang: "1",
       BMW: "BMW",
       Honda: "Honda"
     },
     colors: {
-      red: "red",
+      red: "1",
       white: "white",
       blue: "blue"
     },
     rows: []
   },
   actions: {
-    LOAD_INIT: function({ commit }) {
-      commit("CHANGE_CARS");
+    LOAD_INIT: async function({ commit }) {
+      let url = "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9/2";
+      let results = await shared.getIT(url);
+      console.log(results);
+      commit("CHANGE_CARS", results);
     }
   },
   mutations: {
-    CHANGE_CARS: state => {
-      console.log(state.colors);
-      alert("p");
-      state.cars = state.colors;
+    CHANGE_CARS: (state, results) => {
+      console.log(typeof state.colors);
+      console.log(Object.values(state.colors));
+      state.cars = results;
     }
   }
 });

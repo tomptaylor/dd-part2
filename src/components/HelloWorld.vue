@@ -26,13 +26,7 @@ export default {
       selectedOption: null
     };
   },
-  created() {
-    //shared.getIT("State");
-    //this.$store.dispatch("fetchBook", 1);
-    console.log("here");
-    this.$store.dispatch("LOAD_INIT");
-    // this.CHANGE_CARS();
-  },
+
   mounted() {
     this.selectedOption = this.value;
   },
@@ -46,7 +40,8 @@ export default {
   methods: {
     getData: function(event) {
       alert("hi");
-      this.CHANGE_CARS();
+      //this.CHANGE_CARS();
+      this.$store.dispatch("LOAD_INIT");
     },
     async myFunction(event) {
       this.rows = await shared.getIT("district");
