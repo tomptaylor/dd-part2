@@ -15,6 +15,9 @@ new Vue({
   components: { App },
   template: "<App/>",
   created() {
-    this.$store.dispatch("LOAD_INIT");
+    this.$store.dispatch(
+      "LOAD_INIT",
+      "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9/2"
+    );
   }
 });

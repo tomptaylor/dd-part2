@@ -1,45 +1,36 @@
 <template>
   <div id="app">
-    <HelloWorld :dropDownName="fruit" :options="fruitOptions" />
-    <HelloWorld :dropDownName="cars" :options="$store.state.cars" />
+    <test :theurl="tom" />
+    <dropdown dropDownName="States" :options="$store.state.states" />
+    <dropdown dropDownName="Districts" :options="$store.state.districts" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import dropdown from "./components/dropdown";
 import store from "./store";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    dropdown
   },
   data() {
     return {
-      selectedFruit: "Apple",
-      fruitOptions: {
-        "New York": 1,
-        Coloardo: 2,
-        Blueberry: "Blueberry",
-        Kiwi: "Kiwi",
-        Pear: "Pear",
-        Pineapple: "Pineapple",
-        Watermelon: "Watermelon"
-      },
-      computed: {
-        testData() {
-          return this.$store.state.cars;
-        }
-      },
-      watch: {
-        testData: {
-          immediate: true,
-          deep: false,
-          handler(newValue, oldValue) {
-            console.log(newValue);
-          }
-        }
-      }
+      // computed: {
+      //   testData() {
+      //     return this.$store.state.cars;
+      //   }
+      // },
+      // watch: {
+      //   testData: {
+      //     immediate: true,
+      //     deep: false,
+      //     handler(newValue, oldValue) {
+      //       console.log(newValue);
+      //     }
+      //   }
+      // }
     };
   }
 };
