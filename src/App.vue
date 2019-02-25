@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <test :theurl="tom" />
     <dropdown dropDownName="States" :options="$store.state.states" />
     <dropdown dropDownName="Districts" :options="$store.state.districts" />
   </div>
@@ -16,22 +15,7 @@ export default {
     dropdown
   },
   data() {
-    return {
-      // computed: {
-      //   testData() {
-      //     return this.$store.state.cars;
-      //   }
-      // },
-      // watch: {
-      //   testData: {
-      //     immediate: true,
-      //     deep: false,
-      //     handler(newValue, oldValue) {
-      //       console.log(newValue);
-      //     }
-      //   }
-      // }
-    };
+    return {};
   }
 };
 </script>

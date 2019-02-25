@@ -12,14 +12,20 @@ const store = new Vuex.Store({
     district: {}
   },
   actions: {
-    LOAD_INIT: async function({ commit }, url) {
-      //let url = "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9/2";
-      let results = await shared.getIT(url);
-      commit("CHANGE_CARS", results);
+    LOAD_IT: async function({ commit }, data) {
+      let results = await shared.getIT(data.url);
+      console.log(data.name);
+      switch (data.name) {
+        case "States":
+          commit("CHANGE_STATES", results);
+          break;
+        default:
+          break;
+      }
     }
   },
   mutations: {
-    CHANGE_CARS: (state, results) => {
+    CHANGE_STATES: (state, results) => {
       state.states = results;
     }
   }

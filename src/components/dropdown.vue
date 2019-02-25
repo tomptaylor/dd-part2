@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <label>{{ dropDownName }}: </label>
-    <select v-model="selectedOption" @change="myFunction();">
+    <select v-model="selectedOption">
       <option v-for="(option, name) in options" :value="option">{{
         name
       }}</option>
@@ -25,6 +25,11 @@ export default {
     selectedOption: function(event) {
       switch (this.dropDownName) {
         case "States":
+          var data = {
+            name: "Districts",
+            url: "https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a"
+          };
+          this.$store.dispatch("LOAD_IT", data);
           break;
 
         default:
@@ -32,7 +37,6 @@ export default {
       }
       //  value: function(newValue) {
       //    this.selectedOption = newValue;
-      alert("new selection" + this.dropDownName);
     }
   },
   methods: {},

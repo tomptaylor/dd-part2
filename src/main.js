@@ -15,9 +15,10 @@ new Vue({
   components: { App },
   template: "<App/>",
   created() {
-    this.$store.dispatch(
-      "LOAD_INIT",
-      "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9/2"
-    );
+    var data = {
+      name: "States",
+      url: "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9/2"
+    };
+    this.$store.dispatch("LOAD_IT", data);
   }
 });

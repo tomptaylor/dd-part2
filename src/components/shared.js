@@ -8,6 +8,7 @@ export default {
       }
     });
     let json = await response.json();
+    console.log(json);
     var results = {};
     for (let i in json.DATA) {
       results[json.DATA[i][1]] = json.DATA[i][0];
