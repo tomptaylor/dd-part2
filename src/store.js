@@ -9,15 +9,17 @@ const store = new Vuex.Store({
     selectedState: "",
     states: {},
     selectedDistrict: "",
-    district: {}
+    districts: {}
   },
   actions: {
     LOAD_IT: async function({ commit }, data) {
-      let results = await shared.getIT(data.url);
-      console.log(data.name);
+      let results = await shared.getIT(data.name, data.url);
       switch (data.name) {
         case "States":
           commit("CHANGE_STATES", results);
+          break;
+        case "Districts":
+          commit("CHANGE_DISTRICTS", results);
           break;
         default:
           break;
@@ -27,6 +29,9 @@ const store = new Vuex.Store({
   mutations: {
     CHANGE_STATES: (state, results) => {
       state.states = results;
+    },
+    CHANGE_DISTRICTS: (state, results) => {
+      state.districts = results;
     }
   }
 });

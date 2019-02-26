@@ -1,5 +1,5 @@
 export default {
-  getIT: async function(url) {
+  getIT: async function(name, url) {
     let response = await fetch(url, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -8,11 +8,26 @@ export default {
       }
     });
     let json = await response.json();
-    console.log(json);
+
     var results = {};
-    for (let i in json.DATA) {
-      results[json.DATA[i][1]] = json.DATA[i][0];
+    switch (name) {
+      case "States":
+        for (let i in json.DATA) {
+          results[json.DATA[i][1]] = json.DATA[i][0];
+        }
+        return results;
+        break;
+      case "Districts":
+        for (let i in json) {
+          if (Object.keys(results).indexOf(json[i].district) != 1) {
+            results[json[i].district] = json[i].district;
+          }
+        }
+        return results;
+        break;
+
+      default:
+        break;
     }
-    return results;
   }
 };
