@@ -22,7 +22,7 @@ export default {
     };
   },
   watch: {
-    selectedOption: function(event) {
+    selectedOption: function(val) {
       switch (this.dropDownName) {
         case "States":
           var data = {
@@ -31,7 +31,13 @@ export default {
           };
           this.$store.dispatch("LOAD_IT", data);
           break;
-
+        case "Districts":
+          this.$store.dispatch("GETSCHOOLBYDIST", this.selectedOption);
+          break;
+        case "Role Level":
+          this.$store.state.selectedRoleLevel = val;
+          this.$store.dispatch("ROLESELECTED", this.selectedOption);
+          break;
         default:
           break;
       }

@@ -1,4 +1,13 @@
 export default {
+  uniqueDistrict: function(json) {
+    let results = {};
+    for (let i in json) {
+      if (Object.keys(results).indexOf(json[i].district) != 1) {
+        results[json[i].district] = json[i].district;
+      }
+    }
+    return results;
+  },
   getIT: async function(name, url) {
     let response = await fetch(url, {
       headers: {
@@ -18,12 +27,7 @@ export default {
         return results;
         break;
       case "Districts":
-        for (let i in json) {
-          if (Object.keys(results).indexOf(json[i].district) != 1) {
-            results[json[i].district] = json[i].district;
-          }
-        }
-        return results;
+        return json;
         break;
 
       default:

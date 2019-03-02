@@ -1,7 +1,21 @@
 <template>
   <div id="app">
     <dropdown dropDownName="States" :options="$store.state.states" />
-    <dropdown dropDownName="Districts" :options="$store.state.districts" />
+    <dropdown
+      v-show="showRole"
+      dropDownName="Role Level"
+      :options="$store.state.rolelevel"
+    />
+    <dropdown
+      v-show="showDist"
+      dropDownName="Districts"
+      :options="$store.state.districts"
+    />
+    <dropdown
+      v-show="$store.state.showSchool"
+      dropDownName="Schools"
+      :options="$store.state.schoolsBySelectedDistict"
+    />
   </div>
 </template>
 
@@ -14,8 +28,11 @@ export default {
   components: {
     dropdown
   },
-  data() {
-    return {};
+  data: function() {
+    return {
+      showRole: true,
+      showDist: false
+    };
   }
 };
 </script>
