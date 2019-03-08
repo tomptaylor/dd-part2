@@ -38,6 +38,7 @@ const store = new Vuex.Store({
       console.log(schoolsBySelectedDistict);
       commit("CHANGE_SBSELECTED", schoolsBySelectedDistict);
     },
+    LOAD_STATES: function({ commit }, data) {},
     LOAD_IT: async function({ commit }, data) {
       let results = await shared.getIT(data.name, data.url);
       switch (data.name) {

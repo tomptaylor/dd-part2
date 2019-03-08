@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <dropdown dropDownName="States" :options="$store.state.states" />
+    <ddStates dropDownName="States" :options="$store.state.states" />
+
     <dropdown
       v-show="showRole"
       dropDownName="Role Level"
@@ -21,12 +22,14 @@
 
 <script>
 import dropdown from "./components/dropdown";
+import ddStates from "./components/ddStates";
 import store from "./store";
 
 export default {
   name: "App",
   components: {
-    dropdown
+    dropdown,
+    ddStates
   },
   data: function() {
     return {
