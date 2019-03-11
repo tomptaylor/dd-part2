@@ -1,18 +1,19 @@
 <template>
   <div id="app">
     <ddStates dropDownName="States" :options="$store.state.states" />
-    <ddDistricts />
-    <dropdown
-      v-show="showRole"
-      dropDownName="Role Level"
-      :options="$store.state.rolelevel"
-    />
+    <ddDistricts v-show="showDist" /> <ddRoles v-show="showRole" />
   </div>
 </template>
 
 <script>
-import dropdown from "./components/dropdown";
+// <dropdown
+//   v-show="showRole"
+//   dropDownName="Role Level"
+//   :options="$store.state.rolelevel"
+// />
+import { bus } from "./main";
 import ddStates from "./components/ddStates";
+import ddRoles from "./components/ddRoles";
 import ddDistricts from "./components/ddDistricts";
 
 import store from "./store";
@@ -20,15 +21,33 @@ import store from "./store";
 export default {
   name: "App",
   components: {
-    dropdown,
     ddStates,
-    ddDistricts
+    ddDistricts,
+    ddRoles
   },
   data: function() {
     return {
-      showRole: true,
+      showRole: false,
       showDist: false
     };
+  },
+  created() {
+    bus.$on("ddShow", data => {
+      switch (data) {
+        case "role":
+          this.showRole = true;
+          break;
+        case "dist":
+          this.showDist = true;
+          break;
+        case "state":
+          this.showState = true;
+          break;
+        default:
+          break;
+      }
+      //     this.LOAD_DISTRTICTS();
+    });
   }
 };
 

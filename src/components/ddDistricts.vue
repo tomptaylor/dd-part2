@@ -17,6 +17,7 @@ import { bus } from "../main";
 
 export default {
   name: "hw",
+  props: ["showDistrict"],
   data: function() {
     return {
       selectedOption: "test",
@@ -29,7 +30,11 @@ export default {
       this.LOAD_DISTRTICTS();
     });
   },
-
+  watch: {
+    selectedOption: function(newval) {
+      bus.$emit("ddShow", "role");
+    }
+  },
   methods: {
     LOAD_DISTRTICTS: function() {
       districts.get().then(options => {
@@ -41,6 +46,7 @@ export default {
         // }
         // commit("CHANGE_ALLSCHOOLSINDIST", allSchoolsInDist);
         this.options = shared.uniqueDistrict(options);
+        bus.$emit("ddShow", "dist");
       });
     }
   }
