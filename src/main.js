@@ -8,7 +8,7 @@ import { mapState, mapMutations } from "vuex";
 
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
-
+export const bus = new Vue();
 new Vue({
   el: "#app",
   store,

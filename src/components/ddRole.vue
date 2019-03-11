@@ -12,7 +12,6 @@
 
 <script>
 import { bus } from "../main";
-import usstates from "./api/states.js";
 
 export default {
   name: "ddstate",
@@ -20,7 +19,10 @@ export default {
   data: function() {
     return {
       selectedOption: null,
-      options: {}
+      options: {
+        District: "District",
+        School: "School"
+      }
     };
   },
   created() {
@@ -30,21 +32,10 @@ export default {
   },
   watch: {
     selectedOption: function(newval) {
-      bus.$emit("usstate_changed", newval);
-      //      districts.get().then(options => {
-      //       console.log(options);
-      //      this.options = options;
-      //  });
-
-      // var data = {
-      //   name: "Districts",
-      //   url: "https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a"
-      // };
-      // this.$store.dispatch("LOAD_IT", data);
+      bus.$emit("ROLE_CHANGED", newval);
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped></style>

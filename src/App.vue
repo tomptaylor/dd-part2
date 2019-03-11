@@ -1,21 +1,11 @@
 <template>
   <div id="app">
     <ddStates dropDownName="States" :options="$store.state.states" />
-
+    <ddDistricts />
     <dropdown
       v-show="showRole"
       dropDownName="Role Level"
       :options="$store.state.rolelevel"
-    />
-    <dropdown
-      v-show="showDist"
-      dropDownName="Districts"
-      :options="$store.state.districts"
-    />
-    <dropdown
-      v-show="$store.state.showSchool"
-      dropDownName="Schools"
-      :options="$store.state.schoolsBySelectedDistict"
     />
   </div>
 </template>
@@ -23,13 +13,16 @@
 <script>
 import dropdown from "./components/dropdown";
 import ddStates from "./components/ddStates";
+import ddDistricts from "./components/ddDistricts";
+
 import store from "./store";
 
 export default {
   name: "App",
   components: {
     dropdown,
-    ddStates
+    ddStates,
+    ddDistricts
   },
   data: function() {
     return {
@@ -38,6 +31,17 @@ export default {
     };
   }
 };
+
+// <dropdown
+//   v-show="showDist"
+//   dropDownName="Districts"
+//   :options="$store.state.districts"
+// />
+// <dropdown
+//   v-show="$store.state.showSchool"
+//   dropDownName="Schools"
+//   :options="$store.state.schoolsBySelectedDistict"
+// />
 </script>
 
 <style>

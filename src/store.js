@@ -6,6 +6,11 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      "secret-key":
+        "$2a$10$036UXxSL9oiSYBbeDqdNd.frX7BvsGTNNDekEX2iUKfHj7U1p1k6G"
+    },
     rolelevel: {
       District: "District",
       School: "School"
