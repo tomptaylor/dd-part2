@@ -27,8 +27,8 @@ export default {
   },
   watch: {
     selectedOption: function(newval) {
-      if (newval === "State") {
-        bus.$emit("ROLE_CHANGED", newval);
+      if (newval === "School") {
+        bus.$emit("ddShow", newval);
       }
     }
   }

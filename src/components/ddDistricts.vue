@@ -32,19 +32,19 @@ export default {
   },
   watch: {
     selectedOption: function(newval) {
+      // TODO - LOAD THE SCHOOLS FOR
+      bus.$emit("GETSCHOOLSBYDIST", newval);
       bus.$emit("ddShow", "role");
     }
   },
   methods: {
     LOAD_DISTRTICTS: function() {
       districts.get().then(options => {
-        console.log(options);
-
-        // let allSchoolsInDist = {};
-        // for (let i in results) {
-        //   allSchoolsInDist[results[i].school] = results[i].district;
-        // }
-        // commit("CHANGE_ALLSCHOOLSINDIST", allSchoolsInDist);
+        let allSchoolsInDist = {};
+        for (let i in options) {
+          allSchoolsInDist[options[i].school] = options[i].district;
+        }
+        this.$store.dispatch("LOADALLSCHOOLS", allSchoolsInDist);
         this.options = shared.uniqueDistrict(options);
         bus.$emit("ddShow", "dist");
       });

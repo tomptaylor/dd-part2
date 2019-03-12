@@ -11,21 +11,25 @@ const store = new Vuex.Store({
       "secret-key":
         "$2a$10$036UXxSL9oiSYBbeDqdNd.frX7BvsGTNNDekEX2iUKfHj7U1p1k6G"
     },
-    selectedDistrict: "",
-    districts: {},
     schoolsBySelectedDistict: {},
-    allSchoolsInDist: {},
+    allSchoolsInState: {},
     showSchool: false,
     showDistricts: true
   },
   actions: {
     ROLESELECTED: function({ commit }, val) {
       commit("SHOW_SCHOOLS");
+    },
+    LOADALLSCHOOLS: function({ commit }, results) {
+      commit("LOAD_ALL_SCHOOLS", results);
     }
   },
   mutations: {
-    SHOW_SCHOOLs: (state, results) => {
+    SHOW_SCHOOLS: (state, results) => {
       state.showSchool = true;
+    },
+    LOAD_ALL_SCHOOLS: (state, results) => {
+      state.allSchoolsInState = results;
     }
   }
 });

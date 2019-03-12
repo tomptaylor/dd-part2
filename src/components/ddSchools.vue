@@ -11,38 +11,33 @@
 </template>
 
 <script>
-import states from "../api/districts.js";
 import shared from "./shared.js";
 import { bus } from "../main";
+import { mapState } from "vuex";
 
 export default {
-  name: "hw",
+  name: "schools",
+  computed: mapState(["allSchoolsInState"]),
   data: function() {
     return {
       selectedOption: "test",
       options: {}
     };
   },
+
   created() {
-    this.options = { you: "me" };
-    bus.$on("usstate_changed", data => {
-      this.LOAD_DISTRTICTS();
+    bus.$on("GETSCHOOLSBYDIST", data => {
+      let temp = {};
+      for (let i in this.allSchoolsInState) {
+        if (this.allSchoolsInState[i] === data) {
+          //   console.log(i.toString());
+          //   console.log(this.allSchoolsInState[i]);
+          temp[i] = i;
+        }
+      }
+      this.options = temp;
     });
   },
-
-  methods: {
-    ROLE_CHANGED: function() {
-      districts.get().then(options => {
-        console.log(options);
-
-        // let allSchoolsInDist = {};
-        // for (let i in results) {
-        //   allSchoolsInDist[results[i].school] = results[i].district;
-        // }
-        // commit("CHANGE_ALLSCHOOLSINDIST", allSchoolsInDist);
-        this.options = shared.uniqueDistrict(options);
-      });
-    }
-  }
+  methods: {}
 };
 </script>

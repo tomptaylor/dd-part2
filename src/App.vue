@@ -2,6 +2,7 @@
   <div id="app">
     <ddStates dropDownName="States" :options="$store.state.states" />
     <ddDistricts v-show="showDist" /> <ddRoles v-show="showRole" />
+    <ddSchools v-show="showSchool" />
   </div>
 </template>
 
@@ -15,7 +16,7 @@ import { bus } from "./main";
 import ddStates from "./components/ddStates";
 import ddRoles from "./components/ddRoles";
 import ddDistricts from "./components/ddDistricts";
-
+import ddSchools from "./components/ddSchools";
 import store from "./store";
 
 export default {
@@ -23,16 +24,19 @@ export default {
   components: {
     ddStates,
     ddDistricts,
-    ddRoles
+    ddRoles,
+    ddSchools
   },
   data: function() {
     return {
       showRole: false,
-      showDist: false
+      showDist: false,
+      showSchool: false
     };
   },
   created() {
     bus.$on("ddShow", data => {
+      console.log(data);
       switch (data) {
         case "role":
           this.showRole = true;
@@ -42,6 +46,9 @@ export default {
           break;
         case "state":
           this.showState = true;
+          break;
+        case "School":
+          this.showSchool = true;
           break;
         default:
           break;
