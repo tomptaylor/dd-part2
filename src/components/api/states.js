@@ -1,5 +1,6 @@
 export default {
   get() {
+    //var url = this.$store.state.baseBin;
     var url = "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9/2";
     return fetch(url, {
       headers: {

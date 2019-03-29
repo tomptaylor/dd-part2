@@ -1,8 +1,16 @@
 <template>
   <div id="app">
+  <label>Login</label>
+  <fieldset>
+   <label>Email: </label> <input type="email"/></br>
+   <label>Password: </label> <input type="email"/>
+  </fieldset>
+  <label>Register</label>
+  <fieldset>
     <ddStates dropDownName="States" :options="$store.state.states" />
     <ddDistricts v-show="showDist" /> <ddRoles v-show="showRole" />
     <ddSchools v-show="showSchool" />
+  </fieldset>
   </div>
 </template>
 

@@ -1,11 +1,13 @@
 <template>
   <div>
-    <label> District: </label>
+    <label>District:</label>
     <select v-model="selectedOption">
-      <option value="" disabled hidden>Select here</option>
-      <option v-for="(option, name) in options" :value="option">{{
+      <option value disabled hidden>Select here</option>
+      <option v-for="(option, name) in options" :value="option">
+        {{
         name
-      }}</option>
+        }}
+      </option>
     </select>
   </div>
 </template>
@@ -40,14 +42,15 @@ export default {
   methods: {
     LOAD_DISTRTICTS: function() {
       districts.get().then(options => {
-        let allSchoolsInDist = {};
-        for (let i in options) {
-          allSchoolsInDist[options[i].school] = options[i].district;
-        }
-        this.$store.dispatch("LOADALLSCHOOLS", allSchoolsInDist);
-        this.options = shared.uniqueDistrict(options);
-        bus.$emit("ddShow", "dist");
+        // let allSchoolsInDist = {};
+        // for (let i in options) {
+        //   allSchoolsInDist[options[i].school] = options[i].district;
+        // }
+        // this.$store.dispatch("LOADALLSCHOOLS", allSchoolsInDist);
+        this.options = options;
+        // shared.uniqueDistrict(options);
       });
+      bus.$emit("ddShow", "dist");
     }
   }
 };

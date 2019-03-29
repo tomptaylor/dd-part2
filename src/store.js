@@ -14,7 +14,8 @@ const store = new Vuex.Store({
     schoolsBySelectedDistict: {},
     allSchoolsInState: {},
     showSchool: false,
-    showDistricts: true
+    showDistricts: true,
+    baseBin: "https://api.jsonbin.io/b"
   },
   actions: {
     ROLESELECTED: function({ commit }, val) {
