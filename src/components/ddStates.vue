@@ -1,11 +1,13 @@
 <template>
   <div class="dropdown">
-    <label>{{ dropDownName }}: </label>
+    <label>{{ dropDownName }}:</label>
     <select v-model="selectedOption">
-      <option value="" disabled hidden>Select Age</option>
-      <option v-for="(option, name) in options" :value="option">{{
+      <option value disabled hidden>Select Age</option>
+      <option v-for="(option, name) in options" :value="option">
+        {{
         name
-      }}</option>
+        }}
+      </option>
     </select>
   </div>
 </template>
@@ -30,17 +32,10 @@ export default {
   },
   watch: {
     selectedOption: function(newval) {
-      bus.$emit("usstate_changed", newval);
-      //      districts.get().then(options => {
-      //       console.log(options);
-      //      this.options = options;
-      //  });
-
-      // var data = {
-      //   name: "Districts",
-      //   url: "https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a"
-      // };
-      // this.$store.dispatch("LOAD_IT", data);
+      let obj = {};
+      obj.state = newval;
+      bus.$emit("ddShow", obj);
+      bus.$emit("usstate_changed", obj);
     }
   }
 };

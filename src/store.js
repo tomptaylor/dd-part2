@@ -15,6 +15,7 @@ const store = new Vuex.Store({
     allSchoolsInState: {},
     showSchool: false,
     showDistricts: true,
+    selectedRole: "",
     baseBin: "https://api.jsonbin.io/b"
   },
   actions: {

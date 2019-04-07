@@ -27,7 +27,6 @@ export default {
     };
   },
   created() {
-    this.options = { you: "me" };
     bus.$on("usstate_changed", data => {
       this.LOAD_DISTRTICTS();
     });
@@ -36,21 +35,17 @@ export default {
     selectedOption: function(newval) {
       // TODO - LOAD THE SCHOOLS FOR
       bus.$emit("GETSCHOOLSBYDIST", newval);
-      bus.$emit("ddShow", "role");
+      bus.$emit("ddShow", "school");
     }
   },
   methods: {
     LOAD_DISTRTICTS: function() {
       districts.get().then(options => {
-        // let allSchoolsInDist = {};
-        // for (let i in options) {
-        //   allSchoolsInDist[options[i].school] = options[i].district;
-        // }
-        // this.$store.dispatch("LOADALLSCHOOLS", allSchoolsInDist);
         this.options = options;
-        // shared.uniqueDistrict(options);
       });
-      bus.$emit("ddShow", "dist");
+      let obj = {};
+      obj.dist = "show";
+      bus.$emit("ddShow", obj);
     }
   }
 };

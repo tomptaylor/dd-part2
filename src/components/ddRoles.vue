@@ -1,11 +1,13 @@
 <template>
   <div class="dropdown">
-    <label>Roles: </label>
+    <label>Roles:</label>
     <select v-model="selectedOption">
-      <option value="" disabled hidden>Select Age</option>
-      <option v-for="(option, name) in options" :value="option">{{
-        name
-      }}</option>
+      <option value disabled hidden>Select Age</option>
+      <option v-for="(option, name) in options" :value="name">
+        {{
+        option
+        }}
+      </option>
     </select>
   </div>
 </template>
@@ -20,16 +22,18 @@ export default {
     return {
       selectedOption: null,
       options: {
-        District: "District",
-        School: "School"
+        District: "District level Security",
+        Principle: "Principle",
+        Teacher: "Teacher",
+        OtherSchLevRole: "Other School Level Role"
       }
     };
   },
   watch: {
     selectedOption: function(newval) {
-      if (newval === "School") {
-        bus.$emit("ddShow", newval);
-      }
+      let obj = {};
+      obj.role = newval;
+      bus.$emit("ddShow", obj);
     }
   }
 };
