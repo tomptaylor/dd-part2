@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>School:</label>
-    <select v-model="selectedOption">
+    <select v-model="selectedOption" :disabled="this.disabled">
       <option value disabled hidden>Select here</option>
       <option v-for="(option, name) in options" :value="name">
         {{
@@ -24,14 +24,15 @@ export default {
   data: function() {
     return {
       selectedOption: "test",
-      options: {}
+      options: {},
+      disabled: true
     };
   },
 
   created() {
     bus.$on("GETSCHOOLSBYDIST", data => {
       console.log(data);
-      this.LOAD_SCHOOLS_4_DISTRICT(data);
+      //  this.LOAD_SCHOOLS_4_DISTRICT(data);
       // let temp = {};
       // for (let i in this.allSchoolsInState) {
       //   if (this.allSchoolsInState[i] === data) {
@@ -47,9 +48,12 @@ export default {
     LOAD_SCHOOLS_4_DISTRICT: function(data) {
       schools.get(data).then(options => {
         this.options = options;
-        bus.$emit("ddShow", "school");
+        let obj = {};
+        obj.school = newval;
+        bus.$emit("ddShow", obj);
       });
     }
   }
 };
 </script>
+

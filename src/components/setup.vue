@@ -46,17 +46,17 @@ export default {
           break;
         case "dist":
           this.showDist = true;
+          if (this.selectRole == "Teacher") {
+            this.showSchool = true;
+          }
           break;
         case "state":
           this.selectedState = data.state;
           this.arrSetup.push(data);
-          this.showState = true;
+          this.showDist = true;
           break;
         case "school":
-          console.log(">>>" + state.store.showSchool);
-          if (state.store.showSchool == true) {
-            this.showSchool = true;
-          }
+          this.showSchool = true;
           break;
         default:
           break;

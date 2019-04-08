@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>District:</label>
-    <select v-model="selectedOption">
+    <select v-model="selectedOption" :disabled="disabled">
       <option value disabled hidden>Select here</option>
       <option v-for="(option, name) in options" :value="option">
         {{
@@ -22,6 +22,7 @@ export default {
   props: ["showDistrict"],
   data: function() {
     return {
+      disabled: true,
       selectedOption: "test",
       options: {}
     };
@@ -34,18 +35,19 @@ export default {
   watch: {
     selectedOption: function(newval) {
       // TODO - LOAD THE SCHOOLS FOR
+      // the watch should fite off the event of the next dd to get
       bus.$emit("GETSCHOOLSBYDIST", newval);
-      bus.$emit("ddShow", "school");
+      let obj = {};
+      obj.school = newval;
+      bus.$emit("ddShow", obj);
     }
   },
   methods: {
     LOAD_DISTRTICTS: function() {
       districts.get().then(options => {
         this.options = options;
+        this.disabled = false;
       });
-      let obj = {};
-      obj.dist = "show";
-      bus.$emit("ddShow", obj);
     }
   }
 };

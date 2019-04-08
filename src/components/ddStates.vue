@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown">
     <label>{{ dropDownName }}:</label>
-    <select v-model="selectedOption">
+    <select v-model="selectedOption" :disabled="disabled">
       <option value disabled hidden>Select Age</option>
       <option v-for="(option, name) in options" :value="option">
         {{
@@ -21,6 +21,7 @@ export default {
   props: ["dropDownName"],
   data: function() {
     return {
+      disabled: true,
       selectedOption: null,
       options: {}
     };
@@ -28,6 +29,7 @@ export default {
   created() {
     usstates.get().then(options => {
       this.options = options;
+      this.disabled = false;
     });
   },
   watch: {
@@ -35,7 +37,7 @@ export default {
       let obj = {};
       obj.state = newval;
       bus.$emit("ddShow", obj);
-      bus.$emit("usstate_changed", obj);
+      bus.$emit("usstate_changed", newval);
     }
   }
 };
